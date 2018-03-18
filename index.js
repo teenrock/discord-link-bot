@@ -6,11 +6,6 @@ const bot = new Discord.Client({autoReconnect: true, max_message_cache: 0});
 const config = require("./conf.json");
 const prefix = config.prefix;
 /////////////////////////////////////////////////////////////////////////////////////////
-var serverA_chan = bot.channels.get('423450642451922949'); // ChannelID on central chan
-var serverB_chan = bot.channels.get('423450887986479107'); // ChannelID on central chan
-var serverC_chan = bot.channels.get('423450986506485762'); // ChannelID on central chan
-var botID = bot.users.get('423458755397681152'); // Bot ID
-/////////////////////////////////////////////////////////////////////////////////////////
 
 bot.on("ready", function() {
 	bot.user.setStatus("online");
