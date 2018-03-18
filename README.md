@@ -22,7 +22,7 @@ https://discordapp.com/developers/applications/me
 
 6°) Replace serverA/B/C channel ID by yours
 
-exemple: 
+exemple:
 (before) => var serverC_chan = bot.channels.get('123456789123456789');
 (after) => var serverC_chan = bot.channels.get('987654321987654321');
 
