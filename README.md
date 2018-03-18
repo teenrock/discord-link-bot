@@ -4,7 +4,7 @@ Note:
 This script is an exemple of discord channels link by ID.
 Bot must be present on all discord servers that you need to link.
 
-Install:
+## Install:
 
 # 1°) Install nodeJS
 https://nodejs.org/en/
@@ -30,6 +30,6 @@ exemple:
 # 8°) Launch discord-chan-link script
 node index.js
 
-**Enjoy ! :)
+**Enjoy ! :)**
 
 
