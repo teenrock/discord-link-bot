@@ -2,7 +2,7 @@
 
 Note:
 This script is an exemple of discord channels link by ID.
-The Bot must be present on all discord servers that you need to link.
+Bot must be present on all discord servers that you need to link.
 
 Install:
 
