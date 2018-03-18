@@ -23,8 +23,8 @@ npm install discord.js
 ## 6°) Replace serverA/B/C channel ID by yours
 
 exemple:  
-var serverC_chan = bot.channels.get('123456789123456789');  
-=> var serverC_chan = bot.channels.get('987654321987654321');
+(before) => var serverC_chan = bot.channels.get('123456789123456789');  
+(after) => var serverC_chan = bot.channels.get('987654321987654321');
 
 ## 7°) Replace botID by your bot ID (same method with botID variable)
 
