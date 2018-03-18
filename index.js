@@ -3,7 +3,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////
 const Discord = require("./node_modules/discord.js");
 const bot = new Discord.Client({autoReconnect: true, max_message_cache: 0});
-const config = require("./config.json");
+const config = require("./conf.json");
 /////////////////////////////////////////////////////////////////////////////////////////
 bot.on("ready", function() {
 	bot.user.setStatus("online");
