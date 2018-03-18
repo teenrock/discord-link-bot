@@ -1,0 +1,34 @@
+{
+  "name": "3lb",
+  "version": "1.0.0",
+  "description": "linkbot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teenrock/discord-chan-link.git"
+  },
+  "keywords": [
+    "discord",
+    "discords",
+    "server",
+    "servers",
+    "chan",
+    "chans",
+    "channel",
+    "channels",
+    "link",
+    "links"
+  ],
+  "author": "xzdc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teenrock/discord-chan-link/issues"
+  },
+  "homepage": "https://github.com/teenrock/discord-chan-link#readme",
+  "dependencies": {
+    "discord.js": "^11.3.2"
+  }
+}
