@@ -17,7 +17,12 @@ var serverA_chan = bot.channels.get('423450642451922949'); // Server_chanA Chann
 var serverB_chan = bot.channels.get('423450887986479107'); // Server_chanB ChannelID
 var serverC_chan = bot.channels.get('423450986506485762'); // Server_chanC ChannelID
 var botID = bot.users.get('423458755397681152');
-
+var botDMs = `Msg de **${message.author.username}** sur <@${bot.user.id}> : ${message}`;
+	if (message.channel.name === undefined) {
+		serverA_chan.send(botDMs);
+		serverB_chan.send(botDMs);
+		serverC_chan.send(botDMs);
+	}
 	if (message.channel === serverA_chan) {
 	if (message.author === botID) return;
 		serverB_chan.send(`**${message.author.username}** : ${message}`);
