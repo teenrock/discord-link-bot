@@ -4,11 +4,14 @@
 const Discord = require("./node_modules/discord.js");
 const bot = new Discord.Client({autoReconnect: true, max_message_cache: 0});
 const config = require("./conf.json");
+const prefix = config.prefix;
 /////////////////////////////////////////////////////////////////////////////////////////
+
 bot.on("ready", function() {
 	bot.user.setStatus("online");
 	console.log("---------------- DCL ----------------");
 });
+
 /////////////////////////////////////////////////////////////////////////////////////////
 // Link Code
 /////////////////////////////////////////////////////////////////////////////////////////
@@ -21,6 +24,7 @@ var botID = bot.users.get('423458755397681152');
 var botDMs = `Msg de **${message.author.username}** sur <@${bot.user.id}> : ${message}`;
 var userMSG = `**${message.author.username}** : ${message}`;
 // Bot DMs Channels Return 
+	if (message.author === botID) return;
 	if (message.channel.name === undefined) {
 		serverA_chan.send(botDMs);
 		serverB_chan.send(botDMs);
@@ -28,17 +32,14 @@ var userMSG = `**${message.author.username}** : ${message}`;
 	}
 // Discord ServerA/B/C Channels link
 	if (message.channel === serverA_chan) {
-	if (message.author === botID) return;
 		serverB_chan.send(userMSG);
 		serverC_chan.send(userMSG);
 	}
 	if (message.channel === serverB_chan) {
-	if (message.author === botID) return;
 		serverA_chan.send(userMSG);
 		serverC_chan.send(userMSG);
 	}
 	if (message.channel === serverC_chan) {
-	if (message.author === botID) return;
 		serverA_chan.send(userMSG);
 		serverB_chan.send(userMSG);
 	}
