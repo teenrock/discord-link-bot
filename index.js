@@ -29,19 +29,23 @@ var userMSG = `**${message.author.username}** : ${message}`;
 		serverA_chan.send(botDMs);
 		serverB_chan.send(botDMs);
 		serverC_chan.send(botDMs);
+		console.log(`${message.author.username} sur  <@${bot.user.id}> : ${message}`);
 	}
 // Discord ServerA/B/C Channels link
 	if (message.channel === serverA_chan) {
 		serverB_chan.send(userMSG);
 		serverC_chan.send(userMSG);
+		console.log(userMSG);
 	}
 	if (message.channel === serverB_chan) {
 		serverA_chan.send(userMSG);
 		serverC_chan.send(userMSG);
+		console.log(userMSG);
 	}
 	if (message.channel === serverC_chan) {
 		serverA_chan.send(userMSG);
 		serverB_chan.send(userMSG);
+		console.log(userMSG);
 	}
 });
 
