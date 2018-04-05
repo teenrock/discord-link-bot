@@ -1,3 +1,4 @@
 { 
-   "token": "TOKEN"// Bot Token Here
+   "token": "TOKEN",
+   "prefix": "!"
 }
