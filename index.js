@@ -13,6 +13,16 @@ bot.on("ready", function() {
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////
+// Bot Invite
+/////////////////////////////////////////////////////////////////////////////////////////
+
+bot.on('message', function(message) {
+if (message.content === '!invite') {
+  message.channel.send(`https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&permissions=199681`)
+}
+});
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Link Code
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -25,6 +35,7 @@ var botDMs = `Msg de **${message.author.username}** sur <@${bot.user.id}> : ${me
 var userMSG = `**${message.author.username}** : ${message}`;
 // Bot DMs Channels Return 
 	if (message.author === botID) return;
+	if (message.content === '!invite') return;
 	if (message.channel.name === undefined) {
 		serverA_chan.send(botDMs);
 		serverB_chan.send(botDMs);
