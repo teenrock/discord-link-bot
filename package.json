@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/teenrock/discord-chan-link#readme",
   "dependencies": {
-    "discord.js": "^11.3.2"
+    "discord.js": "^11.3.2",
+    "events": "^2.0.0"
   }
 }
