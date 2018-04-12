@@ -14,6 +14,12 @@ bot.on("ready", function() {
 });
 
 /////////////////////////////////////////////////////////////////////////////////////////
+// CODE TEST
+/////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
 // Commandes
 /////////////////////////////////////////////////////////////////////////////////////////
 
@@ -44,12 +50,21 @@ var userMSG = `**${message.author.username}** : ${message}`;
 var botDMlog = `MSG sur ${bot.user.username}\n<${message.author.username}> ${message}\n`;
 // Bot DMs Channels Return 
 	if ((message.author === botID) && (!message.content.startsWith(`https://discord.gg/`))) return;
-	if (message.content.startsWith(`Message(s) éffacé(s)`) || message.content.startsWith(`:message.channel.name}astebasket: |`) || message.content.startsWith(`!`)) return;
+	if (message.content.startsWith(`Message(s) éffacé(s)`) || message.content.startsWith(`:wastebasket: |`) || message.content.startsWith(`!`)) return;
 	if (message.channel.name === undefined) {
 		serverA_chan.send(botDMs);
 		serverB_chan.send(botDMs);
 		serverC_chan.send(botDMs);
 		console.log(botDMlog);
+		if (message.attachments) {
+        message.attachments.forEach(a => {
+          const urlMessage = `${a.url}`;
+          const urlMSGlog = `${a.url}`;
+          serverA_chan.send(urlMessage);
+          serverB_chan.send(urlMessage);
+          serverC_chan.send(urlMessage);
+          console.log(`Image de ${message.author.username} sur ${bot.user.username} :\n${urlMessage}`);
+        })}
 	}
 // Discord ServerA/B/C Channels link
 	if (message.channel === serverA_chan) {
@@ -57,18 +72,39 @@ var botDMlog = `MSG sur ${bot.user.username}\n<${message.author.username}> ${mes
 		serverB_chan.send(userMSG);
 		serverC_chan.send(userMSG);
 		console.log(userMSGlog);
+		if (message.attachments) {
+        message.attachments.forEach(a => {
+          const urlMessage = `${a.url}`;
+          serverB_chan.send(urlMessage);
+          serverC_chan.send(urlMessage);
+          console.log(`Image de ${message.author.username}\n${urlMessage}`);
+        })}
 	}
 	if (message.channel === serverB_chan) {
 		var userMSGlog = `>>> ${message.guild.name} <<< Salon #${message.channel.name}\n<${message.author.username}> ${message}\n`;
 		serverA_chan.send(userMSG);
 		serverC_chan.send(userMSG);
 		console.log(userMSGlog);
+		if (message.attachments) {
+        message.attachments.forEach(a => {
+          const urlMessage = `${a.url}`;
+          serverA_chan.send(urlMessage);
+          serverC_chan.send(urlMessage);
+          console.log(`Image de ${message.author.username}\n${urlMessage}`);
+        })}
 	}
 	if (message.channel === serverC_chan) {
 		var userMSGlog = `>>> ${message.guild.name} <<< Salon #${message.channel.name}\n<${message.author.username}> ${message}\n`;
 		serverA_chan.send(userMSG);
 		serverB_chan.send(userMSG);
 		console.log(userMSGlog);
+		if (message.attachments) {
+        message.attachments.forEach(a => {
+          const urlMessage = `${a.url}`;
+          serverA_chan.send(urlMessage);
+          serverB_chan.send(urlMessage);
+          console.log(urlMessage);
+        })}
 	}
 });
 
