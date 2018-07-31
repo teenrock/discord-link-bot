@@ -1,0 +1,5 @@
+# we only care about changes to javascript files
+# in the src folder
+!src/*.js
+node_modules/
+safeMode/

@@ -1,0 +1,1 @@
+nodemon --ignore *.js --ignore node_modules/*.js --ignore linkedChansFunc/*.js --ignore linkedChans/*.js --ignore hooks/*.js DLB.js
