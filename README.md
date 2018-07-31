@@ -18,18 +18,19 @@ https://discordapi.com/permissions.html
 ## 4°) Install discord.js library in script bot directory
 npm install discord.js
 
-## 5°) Replace "TOKEN" in conf.json file with your bot token
-
-## 6°) Replace serverA/B/C channel ID by yours
-
-exemple:  
-(before) => var serverC_chan = bot.channels.get('123456789123456789');  
-(after) => var serverC_chan = bot.channels.get('987654321987654321');
-
-## 7°) Replace botID by your bot ID (same method with botID variable)
+## 5°) Replace "TOKEN" in config.json file with your bot token
 
 ## 8°) Launch discord-chan-link script
-node index.js
+node DLB.js
+
+## 9°) Add Bot to all servers you need to link
+https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_HERE&scope=bot&permissions=2080767185
+(Replace CLIENT_ID_HERE by your bot ID)
+
+**NB** (Optionally) **:** DLB_SM.js is a safe mode (relay) of DLB main script.
+If launched, it will automaticaly if DLB presence status change
+from **ONLINE** to **INVISIBLE**
+(case of bug if it wasn't launched with **nodemon/forever** or others alternative
 
 **Enjoy ! :)**
 
