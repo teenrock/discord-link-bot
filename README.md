@@ -28,7 +28,7 @@ https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_HERE&scope=bot&permi
 (Replace CLIENT_ID_HERE by your bot ID)
 
 **NB** (Optionally) **:** DLB_SM.js is a safe mode (relay) of DLB main script.
-If launched, it will automaticaly if DLB presence status change
+If launched, it will automaticaly relay the service on DLB presence status change
 from **ONLINE** to **INVISIBLE**
 (case of bug if it wasn't launched with **nodemon/forever** or others alternative
 
