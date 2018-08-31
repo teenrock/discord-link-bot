@@ -3,25 +3,43 @@ function xzdcCmds(message, prefix, bot, fs, decache) {
 
 let command = message.content;
 
-
-
 // CODE TEST
-if (command == '!guilds') {
-  message.author.send(`${bot.guilds}`);
-  message.delete();
+if (command == '!servers list') {
+  console.log(serverD)
+}
+ 
+if (command == '!hooks list') {
+  console.log(hooksList)
 }
 
-if (command == '!channels') {
+if (command == '!channels list') {
   console.log(bot.channels);
   //message.author.send(`${bot.channels}`);
 } 
 
+if (command == '!users list') {
+  userList = [];
+  bot.users.forEach(user => {
+    let username = user.username;
+    let userID = user.id;
+    let userInfo = `${username} : ${userID}`;
+    userList.push(userInfo)
+    console.log(userInfo)
+  })
+  var file = `../temp_files/${userID}_UL.txt`;
+  fs.createFile(file).then(writeFileSync => {
+    fs.writeFileSync(file, userList).then(send => {
+      message.author.send(file)
+    })
+  })
+}
+
+// END OF CODE TEST
+
+// generate bot invitation url
 if (command === '!bot invite') {
     message.author.send(`https://discordapp.com/oauth2/authorize?client_id=${bot.user.id}&scope=bot&permissions=2080767185`);
 }
-// END OF CODE TEST
-
-
 
 // create new channel
 if (command.startsWith('!newchan')) {
