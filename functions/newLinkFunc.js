@@ -1,8 +1,8 @@
 const newLinkFunc = function(servLetter, message, channel, cyberChanTemp, newHook_ID, newHook_TOKEN, bot, fs) {
 
   if (!bot) {
-	var Discord = require("../node_modules/discord.js");
-	bot = new Discord.Client;
+	  var Discord = require("../node_modules/discord.js");
+	  bot = new Discord.Client;
   }
 
   if (!fs) {
@@ -14,13 +14,13 @@ const newLinkFunc = `///////////////////////////////////////////////////////////
 
 function sendHookServ${servLetter}(message, bot) {
 
-  if (isReady) { 
+  if (isReady) {
+    isReady = false;
     var authorID = bot.users.get(` + '\`${message.author.id}\`' + `);
     var bot_ID = bot.users.get(` + '\`${bot.user.id}\`' + `);
     var pseudo = message.author.username;
     var full_avatarURL = authorID.avatarURL;
     let args = message.content;
-    isReady = false;
 
     if (full_avatarURL !== null) {
       avatarURL64 = full_avatarURL.split('size=2048').join('size=64');
@@ -46,19 +46,18 @@ function sendHookServ${servLetter}(message, bot) {
       } else {
         webhook.edit(` + '\`${pseudo}\`, \`${avatarURL64}\`' + `)
         .then(edit => {
-          if (webhook != Hook${servLetter}) webhook.send(` + '\`${args}\`' + `)
+          if (webhook != Hook${servLetter}) webhook.send(` + '\`${args}\`' + `).then(ready => isReady = true)
         })
       }
     })
     console.log(userMSGlog)
-    isReady = true
 
   } else if (!isReady) {
     var authorID = bot.users.get(` + '\`${message.author.id}\`' + `);
     var bot_ID = bot.users.get(` + '\`${bot.user.id}\`' + `);
     var pseudo = message.author.username;
     var full_avatarURL = authorID.avatarURL;
-    let args = message.content;
+    let argsB = message.content;
     
     if (full_avatarURL !== null) {
       avatarURL64 = full_avatarURL.split('size=2048').join('size=64');
@@ -79,11 +78,9 @@ function sendHookServ${servLetter}(message, bot) {
     userMSGlog = ` + '\` ${new Date()}\\n >>> ${message.guild.name} <<< sur #${message.channel.name}\\n <${message.author.username}> ${argsB}\\n UserID: <${message.author.id}>\\n MsgID: <${message.id}>\\n\`' + `;
 
     linkedChannels.forEach(channel=> {
-      if (channel == undefined) {
-        console.log(` + '\` Le bot n\'a pas pu trouver le salon en link sur le serveur ' + `${servLetter}` + '\`' +`)
-      } else {
+      if (channel != undefined) {
         if (channel != server${servLetter}) channel.createWebhook(` + '\`${pseudo}\`, \`${avatarURL64}\`' + `).then(webhook => {
-          webhook.send(` + '\`${argsB}\`' + `), webhook.delete(200)
+          webhook.send(` + '\`${argsB}\`' + `), webhook.delete()
         })
       }
     })
@@ -109,41 +106,38 @@ module.exports = sendHookServ${servLetter}
     if (servLetter == 'null') return console.log(' CASE 2-A : server Letter is "null" : [SERVER COUNT = 0]\n')
 
    lettersChoice.some(word=> {
-        
       if (!message) {
         if (servLetter === word) console.log(' DETECTED Server Letter : ' + servLetter + '\n AutoLink [createLinkfunction] has been exectued successfully !\n')
       } else if (message) {
         if (servLetter === word) console.log(' DETECTED Server Letter : ' + servLetter + '\n Manual command [createLinkfunction] exectued by ' + message.author.username + '\n')
       }
-
     })
-  
-  // Announce all linked channels of new server link
-  linkedChannels.forEach(channel=> {
-
-  	if (channel != undefined) {
-      channel.send(`La fonction de link pour le serveur : **` + servLetter + '** a bien été créée.\n\nUn nouveau serveur va prochainement rejoindre le link !')
-    } else console.log(` There is an [UNDEFINED] linkedChan. Maybe has been deleted...`)
-
-  })
-  console.log('\n')
 
   if (!message) {
     console.log(' GLOBAL CASE 2-A : AutoLink function activated by GuildCreate Event\n')
-  } else if (message) {    
+
+  } else if (message) {
   	lettersChoice.some(word=> {
+
       if (servLetter === word) {
         message.channel.send(`Manual command **[createLinkfunction]** exectued by **${message.author.username}**`)
         console.log(' GLOBAL CASE 2-B : Manual command [createLinkfunction] exectued by ' + message.author.username + '\n')
       	console.log(' Server Letter : ' + servLetter + '\n' + ' Letter Choice : ' + lettersChoice + '\n')
+
         if (!message) {
           cyberChan = bot.channels.get(`${cyberChanTemp.id}`)
         } else if (message) {
           cyberChan = message.channel.id;
         }
-	  }	
-	})
+	    }
+	  })
+  	message.channel.send(`La fonction de link pour le serveur : **` + servLetter + '** a bien été créée.\n')
 
+    linkedChannels.forEach(channel=> {
+      if (channel != undefined) {
+        if (channel != cyberChan) channel.send('**Un nouveau serveur va prochainement rejoindre le link !**')
+      }
+    })
   }
 
 var newServFunc = `function server_${servLetter}(bot) {
