@@ -1,33 +1,14 @@
-function linkedChans_file(bot, channel, fs) {
-
-  lettersChoice = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+function linkedChans_file(bot, channel, fs, lettersChoice) {
 
   serverA = undefined;
   serverB = undefined;
   serverC = undefined;
-  serverD = undefined;
-  serverE = undefined;
-  serverF = undefined;
-  serverG = undefined;
-  serverH = undefined;
-  serverI = undefined;
-  serverJ = undefined;
-  serverK = undefined;
-  serverL = undefined;
-  serverM = undefined;
-  serverN = undefined;
-  serverO = undefined;
-  serverP = undefined;
-  serverQ = undefined;
-  serverR = undefined;
-  serverS = undefined;
-  serverT = undefined;
-  serverU = undefined;
-  serverV = undefined;
-  serverW = undefined;
-  serverX = undefined;
-  serverY = undefined;
-  serverZ = undefined;
+  serverA1 = undefined;
+  serverB1 = undefined;
+  serverC1 = undefined;
+  serverA2 = undefined;
+  serverB2 = undefined;
+  serverC2 = undefined;
 
   lettersChoice.forEach(servLetter=> {
   	var file = fs.existsSync("./linkedChans/server" + servLetter + ".js")
@@ -42,11 +23,11 @@ function linkedChans_file(bot, channel, fs) {
       console.log(' Server ' + servLetter + ' [LinkedChannel File Configuration] for this server has been found.');
 
   	}
-    
-  })
 
-  linkedChannels = [serverA, serverB, serverC, serverD, serverE, serverF, serverG, serverH, serverI, serverJ, serverK, serverL, serverM, serverN, serverO, serverP, serverQ, serverR, serverS, serverT, serverU, serverV, serverW, serverX, serverY, serverZ]
-  linkedChans = (channel==serverA)||(channel==serverB)||(channel==serverC)||(channel==serverD)||(channel==serverE)||(channel==serverF)||(channel==serverG)||(channel==serverH)||(channel==serverI)||(channel==serverJ)||(channel==serverK)||(channel==serverL);
+  })
+  
+  linkedChannels = [serverA, serverB, serverC, serverA1, serverB1, serverC1, serverA2, serverB2, serverC2]
+  linkedChans = (channel==serverA)||(channel==serverB)||(channel==serverC)||(channel==serverA1)||(channel==serverB1)||(channel==serverC1)||(channel==serverA2)||(channel==serverB2)||(channel==serverC2);
   console.log('\n')
 
 }
