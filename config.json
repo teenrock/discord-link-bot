@@ -1,5 +1,5 @@
 { 
-   "token": "TOKEN",
+   "token": "BOT_TOKEN_HERE",
    "prefix": "!",
    "name": "DLB"
 }

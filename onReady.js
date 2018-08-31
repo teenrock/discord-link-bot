@@ -14,9 +14,12 @@ function onReady (message, channel, bot, fs, decache, confName) {
   console.log(`\n ${bot.user.username}@Bot [Started] ${new Date()}
  --------------------------------------\n Utilisateurs: ${memberCount}\n Serveurs: ${serverCount}\n\n ${guildNames}\n\n ${guildIDs}\n --------------------------------------\n`);
 
+  // Servers Letters Possibilities
+  lettersChoice = ['A','B','C','A1','B1','C1','A2','B2','C2'];
+
   // Channels list
   linkedChans_file = require("./linkedChans/linkedChannels.js")
-  linkedChans_file(bot, channel, fs)
+  linkedChans_file(bot, channel, fs, lettersChoice)
 
   // Webhooks List
   captainHooks = require("./captainHooks.js")
@@ -24,6 +27,9 @@ function onReady (message, channel, bot, fs, decache, confName) {
 
   // Ban Users (not saved after restart)
   banIDs = [];
+
+  // YouTube Detected Links
+  ytLinkList = [];
 
   // DevIDs
   xzdcdev_id = '446033566649024512';
@@ -57,6 +63,7 @@ function onReady (message, channel, bot, fs, decache, confName) {
   default_avatar = 'http://teenanon.free.fr/teenrock/discordbot/pictures_res/default_avatar.png';
   avatarSM = 'https://cdn.discordapp.com/avatars/448831815176945676/086496de53737c264708faebcd90accb.png?size=64';
   infoMSG = `**Ce salon relie actuellement ${serverCount} serveurs discord:**\n\n ${guildNames}`;
+  propLink = `Vous possédez un serveur discord ?\nVous souhaiteriez rejoindre les **${serverCount} serveurs** déjà en link ?\nN'hesitez pas à m'en informer ici-même, où directement en mp **>>> ${xzdcdev} <<<**`;
 
   if (confName == "DLB") {
     DLB = bot.users.get(`${bot.user.id}`);
@@ -72,15 +79,18 @@ function onReady (message, channel, bot, fs, decache, confName) {
       console.log('isReady Status: ' + isReady)
     }, 600 * 1000);
 
-    setInterval (function () {
-      bot.channels.forEach(channel => {
-        if (linkedChans) {
-          channel.createWebhook(`Information`, `${avatarINFO}`).then(wb => {
-            webhook.send(`${infoMSG}`), webhook.delete()
-          })
-        }
+    function infoLink() {
+      linkedChannels.forEach(channel => {
+        var infoLinkMsg = `**Propriétaire d'un serveur discord ?**\n\nVous souhaiteriez rejoindre les **${serverCount} serveurs** déjà en link ?\n\nN'hesitez pas à m'en informer ici-même, où directement en mp.\n\n**>>> ${xzdcdev} <<<**`;
+        if (channel != undefined) channel.createWebhook(`Information`, `${default_avatar}`).then(wb => {
+          wb.send(infoLinkMsg), wb.delete()
+        })
       })
-    }, 1440 * 60000);
+    }
+    infoLink()
+    setInterval(function() {
+      infoLink()
+    }, 720 * 60000);
 
 /* // List all connected servers at startup
   hooksList.forEach(webhook => {
