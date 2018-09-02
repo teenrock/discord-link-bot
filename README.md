@@ -16,12 +16,18 @@ https://discordapp.com/developers/applications/me
 https://discordapi.com/permissions.html
 
 ## 4°) Install discord.js library in script bot directory
-npm install discord.js
+npm install --save discord.js
+npm install --save events
+npm install --save express 
+npm install --save fs-extra
+npm install --save decache
 
 ## 5°) Replace "TOKEN" in config.json file with your bot token
+(replace in config_SM.json too if you choose to use the DLB SafeMode for more service stability)
 
 ## 8°) Launch discord-chan-link script
 node DLB.js
+node DLB_SM.js (only if you want to launch the SafeMode next to DLB master service)
 
 ## 9°) Add Bot to all servers you need to link
 https://discordapp.com/oauth2/authorize?client_id=CLIENT_ID_HERE&scope=bot&permissions=2080767185
