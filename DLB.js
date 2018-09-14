@@ -210,7 +210,7 @@ if (msgChanLink) {
 
   // Youtube Link Detection
   if (ytURLs.some(url => (msg.includes(url) && arg[0].startsWith('http')))) {
-    console.log(' ' + msg + '\n')
+    console.log(' Lien Youtube détecté : ' + msg + '\n')
   	ytLinkList.push(arg[0])
     message.channel.send(`**Lien Youtube Détecté !**`)
     message.reply(`votre lien YouTube a bien été ajouté à la liste mystère`)
