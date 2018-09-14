@@ -14,74 +14,85 @@ const newLinkFunc = `///////////////////////////////////////////////////////////
 
 function sendHookServ${servLetter}(message, bot) {
 
+  var lastHook = hooksList.slice(-1)[0]
+
   if (isReady) {
     isReady = false;
     var authorID = bot.users.get(` + '\`${message.author.id}\`' + `);
-    var bot_ID = bot.users.get(` + '\`${bot.user.id}\`' + `);
-    var pseudo = message.author.username;
-    var full_avatarURL = authorID.avatarURL;
-    let args = message.content;
+    args_${servLetter} = message.content;
 
-    if (full_avatarURL !== null) {
-      avatarURL64 = full_avatarURL.split('size=2048').join('size=64');
+    if (authorID.avatarURL !== null) {
+      avatarURL64_${servLetter} = authorID.avatarURL.split('size=2048').join('size=64');
     } else {
-      avatarURL64 = 'http://teenanon.free.fr/teenrock/discordbot/pictures_res/default_avatar.png';
+      avatarURL64_${servLetter} = 'http://teenanon.free.fr/teenrock/discordbot/pictures_res/default_avatar.png';
     }
 
     if (message.attachments) {
       message.attachments.forEach(att => {
         if (!message.content) {
-          args = ` + '\` ${att.url}\`' + `;
+          args_${servLetter} = ` + '\` ${att.url}\`' + `;
         } else if (message.content) {
-          args = ` + '\`${message.content}\\n ${att.url}\`' + `;
+          args_${servLetter} = ` + '\`${message.content}\\n ${att.url}\`' + `;
         }
       })
     }
 
-    userMSGlog = ` + '\` ${new Date()}\\n >>> ${message.guild.name} <<< sur #${message.channel.name}\\n <${message.author.username}> ${args}\\n UserID: <${message.author.id}>\\n MsgID: <${message.id}>\\n\`' + `;
+    userMSGlog = ` + '\` ${new Date()}\\n >>> ${message.guild.name} <<< sur #${message.channel.name}\\n <${message.author.username}> ${args_' + servLetter + '}\\n UserID: <${message.author.id}>\\n MsgID: <${message.id}>\\n\`' + `;
   
     hooksList.forEach(webhook => {
       if (webhook == undefined) {
         console.log(` + '\` Le bot n\'a pas pu trouver le webhook du serveur ' + servLetter + '\`' +`)
       } else {
-        webhook.edit(` + '\`${pseudo}\`, \`${avatarURL64}\`' + `)
-        .then(edit => {
-          if (webhook != Hook${servLetter}) webhook.send(` + '\`${args}\`' + `).then(ready => isReady = true)
+        webhook.edit(` + '\`${message.author.username}\`, \`${avatarURL64_' + servLetter + '}\`' + `)
+        .then(send => {
+          if ((webhook != Hook${servLetter}) && (webhook != lastHook)) {
+            webhook.send(` + '\`${args_' + servLetter + '}\`' + `)
+          }
+          if (webhook == lastHook) {
+            
+            if (webhook == Hook${servLetter}) {
+              isReady = true
+              console.log(" Bot is Ready\\n")
+            }
+            if (webhook != Hook${servLetter}) {
+              webhook.send(` + '\`${args_' + servLetter + '}\`' + `)
+               .then(ready => {
+                isReady = true
+                console.log(' Bot is Ready !\\n')
+              })
+            }
+          }
         })
       }
     })
-    console.log(userMSGlog)
+    console.log(" Bot is not ready yet ..." + '\\n\\n' + userMSGlog)
 
   } else if (!isReady) {
     var authorID = bot.users.get(` + '\`${message.author.id}\`' + `);
-    var bot_ID = bot.users.get(` + '\`${bot.user.id}\`' + `);
-    var pseudo = message.author.username;
-    var full_avatarURL = authorID.avatarURL;
-    let argsB = message.content;
+    argsB_${servLetter} = message.content;
     
-    if (full_avatarURL !== null) {
-      avatarURL64 = full_avatarURL.split('size=2048').join('size=64');
+    if (authorID.avatarURL !== null) {
+      avatarURL64B_${servLetter} = authorID.avatarURL.split('size=2048').join('size=64');
     } else {
-      avatarURL64 = 'http://teenanon.free.fr/teenrock/discordbot/pictures_res/default_avatar.png';
+      avatarURL64B_${servLetter} = 'http://teenanon.free.fr/teenrock/discordbot/pictures_res/default_avatar.png';
     }
 
     if (message.attachments) {
       message.attachments.forEach(att => {
         if (!message.content) {
-          argsB = ` + '\`${att.url}\`' + `;
+          argsB_${servLetter} = ` + '\`${att.url}\`' + `;
         } else if (message.content) {
-          argsB = ` + '\`${message.content}\\n${att.url}\`' + `;
+          argsB_${servLetter} = ` + '\`${message.content}\\n${att.url}\`' + `;
         }
       })
     }
 
-    userMSGlog = ` + '\` ${new Date()}\\n >>> ${message.guild.name} <<< sur #${message.channel.name}\\n <${message.author.username}> ${argsB}\\n UserID: <${message.author.id}>\\n MsgID: <${message.id}>\\n\`' + `;
+    userMSGlog = ` + '\` ${new Date()}\\n >>> ${message.guild.name} <<< sur #${message.channel.name}\\n <${message.author.username}> ${argsB_' + servLetter + '}\\n UserID: <${message.author.id}>\\n MsgID: <${message.id}>\\n\`' + `;
 
     linkedChannels.forEach(channel=> {
       if (channel != undefined) {
-        if (channel != server${servLetter}) channel.createWebhook(` + '\`${pseudo}\`, \`${avatarURL64}\`' + `).then(webhook => {
-          webhook.send(` + '\`${argsB}\`' + `)
-          webhook.delete()
+        if (channel != server${servLetter}) channel.createWebhook(` + '\`${message.author.username}\`, \`${avatarURL64B_' + servLetter + '}\`' + `).then(webhook => {
+          webhook.send(` + '\`${argsB_' + servLetter + '}\`' + `), webhook.delete()
         })
       }
     })
@@ -116,24 +127,24 @@ module.exports = sendHookServ${servLetter}
 
   if (!message) {
     console.log(' GLOBAL CASE 2-A : AutoLink function activated by GuildCreate Event\n')
-
+  
   } else if (message) {
 
-  	lettersChoice.some(word=> {
-
+    lettersChoice.some(word=> {
+      
       if (servLetter === word) {
         message.channel.send(`Manual command **[createLinkfunction]** exectued by **${message.author.username}**`)
         console.log(' GLOBAL CASE 2-B : Manual command [createLinkfunction] exectued by ' + message.author.username + '\n')
-      	console.log(' Server Letter : ' + servLetter + '\n' + ' Letter Choice : ' + lettersChoice + '\n')
+        console.log(' Server Letter : ' + servLetter + '\n' + ' Letter Choice : ' + lettersChoice + '\n')
 
         if (!message) {
           cyberChan = bot.channels.get(`${cyberChanTemp.id}`)
         } else if (message) {
           cyberChan = message.channel.id;
         }
-	    }
-	  })
-  	message.channel.send(`La fonction de link pour le serveur : **` + servLetter + '** a bien été créée.\n')
+      }
+    })
+    message.channel.send(`La fonction de link pour le serveur : **` + servLetter + '** a bien été créée.\n')
 
     linkedChannels.forEach(channel=> {
       if (channel != undefined) {
