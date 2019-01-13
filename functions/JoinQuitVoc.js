@@ -16,7 +16,7 @@ function JoinQuitVoc(oldMember, newMember) {
       */
     // UserLeave VoiceChannel
     } else if (newUserChannel === undefined) {
-      var vocChanMSG2 = `**\`${serverName}\`** | ` + newUserOldVocMsg + ` | **\`${new Date()}\`**`.
+      var vocChanMSG2 = `**\`${serverName}\`** | ` + newUserOldVocMsg + ` | **\`${new Date()}\`**`;
       /*
       vocChanLog.send(vocChanMSG2);
       vocChanWanaLog.send(vocChanMSG2);
