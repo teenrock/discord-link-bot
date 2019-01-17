@@ -215,13 +215,11 @@ if (msgChanLink) {
 
       message.delete(10000).catch(err => console.log(err))
 
-    } else {
-
-      if (xzdcUsersList.some(user => (user != message.author))) {
-        return message.reply(restrict_ans).then(msg=> msg.delete(7000) && message.delete(7000).then(msg=> message.author.send(restrict_ans2)))
-      }
-
-  }
+    } else if (message.author != xzdcUsersList.some(user)) {
+      console.log(message.author.username + " has try to post a discord invite link")
+      return message.reply(restrict_ans).then(msg=> msg.delete(7000) && message.delete(7000).then(msg=> message.author.send(restrict_ans2)))
+    }
+    
 }
   // Exception for bot messages
   if ((message.author.bot) && (message.author.id != "519711870249336844")) return; // ID = Bot KOS
