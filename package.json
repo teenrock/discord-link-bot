@@ -1,7 +1,7 @@
 {
-  "name": "dlb",
+  "name": "DLB",
   "version": "1.0.0",
-  "description": "discord channels link bot",
+  "description": "discord servers link bot",
   "main": "DLB.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/teenrock/discord-chan-link.git"
   },
+  "keywords": [
+    "discord",
+    "discords",
+    "server",
+    "servers",
+    "chan",
+    "chans",
+    "channel",
+    "channels",
+    "link",
+    "links"
+  ],
   "author": "xzdc",
   "license": "ISC",
   "bugs": {
@@ -18,13 +30,14 @@
   "homepage": "https://github.com/teenrock/discord-chan-link#readme",
   "dependencies": {
     "braces": "^3.0.2",
-    "discord.js": "^11.4.2",
-    "events": "^3.0.0",
+    "decache": "^4.4.0",
+    "discord.js": "^11.3.2",
+    "events": "^2.0.0",
     "express": "^4.16.3",
-    "forever": "^0.15.3",
-    "fs-extra": "^7.0.0"
+    "fs-extra": "^7.0.0",
+    "replaceall": "^0.1.6"
   },
   "devDependencies": {
-    "decache": "^4.4.0"
+    "forever": "^0.15.3"
   }
 }
